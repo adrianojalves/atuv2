@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load meus_filtros %}
+
+{% block conteudo %}
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Cadastro/Edição de Curso</div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_curso.nome.errors }}
+                        <label>Nome</label>
+                        {{form_curso.nome|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_curso.tipo.errors }}
+                        <label>Tipo</label>
+                        {{form_curso.tipo|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_curso.turno.errors }}
+                        <label>Turno</label>
+                        {{form_curso.turno|addclass:'form-control'}}
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block"  type="submit">Salvar</button>
+            <a class="btn btn-dark btn-block" href="{% url 'listar_cursos' %}">Voltar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}

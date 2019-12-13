@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load meus_filtros %}
+
+{% block conteudo %}
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Cadastro/Edição de Instituição de Ensino</div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-7">
+                        {{ form_instituicao.nome.errors }}
+                        <label>Nome</label>
+                        {{form_instituicao.nome|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-5">
+                        {{ form_instituicao.cnpj.errors }}
+                        <label>CNPJ</label>
+                        {{form_instituicao.cnpj|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-7">
+                        {{ form_instituicao.rua.errors }}
+                        <label>Rua</label>
+                        {{form_instituicao.rua|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-5">
+                        {{ form_instituicao.bairro.errors }}
+                        <label>Bairro</label>
+                        {{form_instituicao.bairro|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_instituicao.numero.errors }}
+                        <label>Número</label>
+                        {{form_instituicao.numero|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_instituicao.cep.errors }}
+                        <label>CEP</label>
+                        {{form_instituicao.cep|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        {{ form_instituicao.cidade.errors }}
+                        <label>Cidade</label>
+                        {{form_instituicao.cidade|addclass:'form-control'}}
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block"  type="submit">Salvar</button>
+            <a class="btn btn-dark btn-block" href="{% url 'listar_instituicoes' %}">Voltar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}

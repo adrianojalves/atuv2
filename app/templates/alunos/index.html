@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+              <i class="fas fa-table"></i>
+              Lista de Alunos
+            <div style="float:right">
+            <a href="{% url 'cad_aluno' %}"><i class="fas fa-plus-circle"></i>
+                Novo</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th style="width:5%">Editar</th>
+                    <th style="width: 5%">Excluir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for aluno in alunos %}
+                  <tr>
+                    <td>{{ aluno.id }}</td>
+                    <td>{{ aluno.nome }}</td>
+                    <td>{{ aluno.cnpj }}</td>
+                    <td><a class="nav-link" href="{% url 'editar_aluno' aluno.id %}">
+                                <i class="fas fa-fw fa-edit"></i></a></td>
+                    <td><a class="nav-link" href="{% url 'remover_aluno' aluno.id %}">
+                                <i class="fas fa-fw fa-trash-alt"></i></a></td>
+                  </tr>
+                 {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+{% endblock conteudo %}

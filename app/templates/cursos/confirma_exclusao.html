@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block conteudo %}
+<div class="card">
+    <div class="card-header">
+        Tem certeza que deseja remover o Curso?
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Titulo: {{curso.nome}}</h5>
+        <h5 class="card-title">Turno: {{curso.get_turno_display}}</h5>
+        <h5 class="card-title">Tipo: {{curso.get_tipo_display}}</h5>
+        <form method="post">
+            {% csrf_token %}
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Voltar</a>
+            <button class="btn btn-danger" type="submit">Remover</button>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}

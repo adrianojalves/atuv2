@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load meus_filtros %}
+
+{% block conteudo %}
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Cadastro/Edição de Alunos</div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-12">
+                        {{ form_aluno.nome.errors }}
+                        <label>Nome</label>
+                        {{form_aluno.nome|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_aluno.rg.errors }}
+                        <label>RG</label>
+                        {{form_aluno.rg|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_aluno.cpf.errors }}
+                        <label>CPF</label>
+                        {{form_aluno.cpf|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-7">
+                        {{ form_aluno.rua.errors }}
+                        <label>Rua</label>
+                        {{form_aluno.rua|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-5">
+                        {{ form_aluno.bairro.errors }}
+                        <label>Bairro</label>
+                        {{form_aluno.bairro|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_aluno.numero.errors }}
+                        <label>Número</label>
+                        {{form_aluno.numero|addclass:'form-control'}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_aluno.cep.errors }}
+                        <label>CEP</label>
+                        {{form_aluno.cep|addclass:'form-control'}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        {{ form_aluno.cidade.errors }}
+                        <label>Cidade</label>
+                        {{form_aluno.cidade|addclass:'form-control'}}
+                    </div>
+                </div>
+            </div>
+
+
+                 {% if update %}
+                 <div class="card mb-3 mt-4">
+                  <div class="card-header">
+                      <i class="fas fa-table"></i>
+                      Telefones
+                    <div style="float:right">
+                    <a href="{% url 'cad_telefone' cod_aluno %}"><i class="fas fa-plus-circle"></i>
+                        Novo</a>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Telefone</th>
+                            <th style="width:5%">Editar</th>
+                            <th style="width: 5%">Excluir</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for telefone in telefones %}
+                          <tr>
+                            <td>{{ telefone.telefone }}</td>
+                            <td><a class="nav-link" href="{% url 'editar_telefone' telefone.id %}">
+                                        <i class="fas fa-fw fa-edit"></i></a></td>
+                            <td><a class="nav-link" href="{% url 'remover_telefone' telefone.id %}">
+                                        <i class="fas fa-fw fa-trash-alt"></i></a></td>
+                          </tr>
+                         {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                 {% endif %}
+
+            <button class="btn btn-primary btn-block"  type="submit">Salvar</button>
+            <a class="btn btn-dark btn-block" href="{% url 'listar_alunos' %}">Voltar</a>
+        </form>
+
+    </div>
+</div>
+
+{% endblock conteudo %}

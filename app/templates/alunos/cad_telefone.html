@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load meus_filtros %}
+
+{% block conteudo %}
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Cadastro/Edição de Telefone - Aluno: {{aluno.nome}}</div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" id="cod_aluno" name="cod_aluno" value="{{aluno.id}}" />
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        {{ form_telefone.telefone.errors }}
+                        <label>Telefone</label>
+                        {{form_telefone.telefone|addclass:'form-control'}}
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block"  type="submit">Salvar</button>
+            <a class="btn btn-dark btn-block" href="{% url 'editar_aluno' aluno.id %}">Voltar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}

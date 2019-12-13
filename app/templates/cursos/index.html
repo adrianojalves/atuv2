@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Lista de Cursos
+          <div style="float:right">
+          <a href="{% url 'cad_curso' %}"><i class="fas fa-plus-circle"></i>
+              Novo</a>
+          </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Turno</th>
+                    <th style="width:5%">Editar</th>
+                    <th style="width: 5%">Excluir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for curso in cursos %}
+                  <tr>
+                    <td>{{ curso.id }}</td>
+                    <td>{{ curso.nome }}</td>
+                    <td>{{ curso.get_tipo_display }}</td>
+                    <td>{{ curso.get_turno_display }}</td>
+                    <td><a class="nav-link" href="{% url 'editar_curso' curso.id %}">
+                                <i class="fas fa-fw fa-edit"></i></a></td>
+                    <td><a class="nav-link" href="{% url 'remover_curso' curso.id %}">
+                                <i class="fas fa-fw fa-trash-alt"></i></a></td>
+                  </tr>
+                 {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+{% endblock conteudo %}

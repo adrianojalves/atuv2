@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block conteudo %}
+<div class="card">
+    <div class="card-header">
+        Tem certeza que deseja remover o Aluno?
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Nome: {{aluno.nome}}</h5>
+        <h5 class="card-title">CPF: {{aluno.cpf}}</h5>
+        <form method="post">
+            {% csrf_token %}
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Voltar</a>
+            <button class="btn btn-danger" type="submit">Remover</button>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}
